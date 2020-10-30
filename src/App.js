@@ -3,8 +3,20 @@ import './App.css';
 import {isTablet,osVersion,mobileVendor,mobileModel,deviceType,
   getUA,engineVersion,browserVersion,fullBrowserVersion,osName} from 'react-device-detect';
 import uniqid from 'uniqid';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 
 function App() {
+  const [ip,setIp] = useState('')
+  useEffect(()=>{
+    axios.get("https://api.ipify.org")
+    .then((res)=>{
+      if(res){
+        const ip = res.data
+        setIp(ip)
+      }
+    })
+  },[])
   return (
     <div className="App">
       <header className="App-header">
@@ -21,6 +33,7 @@ function App() {
           <p>browserVersion- <code>{browserVersion}</code></p>
           <p>fullBrowserVersion- <code>{fullBrowserVersion}</code></p>
           <p>uniqueId-<code>{uniqid()}</code></p> 
+          <p>ipAddress-<code>{ip}</code></p> 
       </header>
     </div>
   );
