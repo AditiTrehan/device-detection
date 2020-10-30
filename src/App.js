@@ -2,9 +2,11 @@ import logo from './logo.svg';
 import './App.css';
 import {isTablet,osVersion,mobileVendor,mobileModel,deviceType,
   getUA,engineVersion,browserVersion,fullBrowserVersion,osName} from 'react-device-detect';
+import uniqid from 'uniqid';
 
 function App() {
-  console.log(isTablet,osVersion,mobileVendor,mobileModel,deviceType,"isMobile")
+  const hour = new Date().getHours()
+  const is24hour = hour > 12 ? true : false
   return (
     <div className="App">
       <header className="App-header">
@@ -20,6 +22,8 @@ function App() {
           <p>engineVersion- <code>{engineVersion}</code></p>
           <p>browserVersion- <code>{browserVersion}</code></p>
           <p>fullBrowserVersion- <code>{fullBrowserVersion}</code></p>
+          <p>uniqueId-<code>{uniqid()}</code></p> 
+          <p>is24Hour-<code>{is24hour ? "true" : "false"}</code></p>
       </header>
     </div>
   );
